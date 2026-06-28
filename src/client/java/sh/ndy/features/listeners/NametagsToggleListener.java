@@ -3,6 +3,7 @@ package sh.ndy.features.listeners;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.entity.state.EntityRenderState;
+import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -33,6 +34,19 @@ public class NametagsToggleListener<T extends Entity, S extends EntityRenderStat
 
   public void handleMixin(CallbackInfo ci) {
 	if (Config.getOptions().getRenderNametags()) {
+	  return;
+	}
+
+	ci.cancel();
+  }
+
+  public void handlePlayerMixin(PlayerEntityRenderState state, CallbackInfo ci) {
+	if (Config.getOptions().getRenderNametags()) {
+	  return;
+	}
+
+	Entity cameraEntity = MinecraftClient.getInstance().getCameraEntity();
+	if (Config.getOptions().getRenderSelfNametag() && cameraEntity != null && cameraEntity.getId() == state.id) {
 	  return;
 	}
 
