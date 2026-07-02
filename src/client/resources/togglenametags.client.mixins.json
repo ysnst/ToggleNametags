@@ -5,6 +5,7 @@
   "client": [
     "MixinRenderBossBar",
     "MixinRenderNameTag",
+    "MixinRenderPlayerNameTag",
     "MixinRenderSelfNameTag"
   ],
   "injectors": {
